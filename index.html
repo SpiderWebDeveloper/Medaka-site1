@@ -4,12 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>極みメダカ - 最高峰の観賞メダカ専門店</title>
+    
+    <!-- Google Fontsの読み込み（プロ仕様の美しいフォント） -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- 見出し用の美しい明朝体（Shippori Mincho）と、本文用の読みやすいゴシック体（Noto Sans JP） -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500&family=Shippori+Mincho:wght@500;700;800&display=swap" rel="stylesheet">
+
     <style>
-        /* --- 全体のデザイン --- */
+        /* --- 全体のデザイン（より深い黒と輝くゴールド） --- */
         :root {
-            --primary-color: #d4af37; 
-            --bg-dark: #0a1118;       
-            --text-light: #f5f6f7;
+            --primary-color: #e8c37c; /* より上品で明るいゴールド */
+            --bg-dark: #030508;       /* 漆黒に近いスタイリッシュな黒 */
+            --text-light: #e0e5eb;
+            --glass-bg: rgba(10, 15, 20, 0.65);
         }
 
         * {
@@ -19,11 +27,30 @@
         }
 
         body {
-            font-family: 'Helvetica Neue', Arial, sans-serif;
+            /* 本文はスッキリとしたゴシック体 */
+            font-family: 'Noto Sans JP', sans-serif;
             background-color: var(--bg-dark);
             color: var(--text-light);
             line-height: 1.8;
             overflow-x: hidden;
+        }
+
+        /* 見出しはすべて美しい明朝体にする設定 */
+        h1, h2, h3, h4, th {
+            font-family: 'Shippori Mincho', serif;
+            letter-spacing: 0.1em;
+        }
+
+        /* --- ページを開いた時のフワッと浮かぶアニメーション --- */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         /* --- 背景（ゆっくり動くアニメーション） --- */
@@ -34,12 +61,11 @@
             left: -10%;
             width: 120%;
             height: 120%;
-            /* 実際のファイル名 hero-bg.png.png に合わせました */
-            background-image: linear-gradient(rgba(10, 17, 24, 0.75), rgba(10, 17, 24, 0.85)), url('hero-bg.png.png');
+            background-image: linear-gradient(rgba(3, 5, 8, 0.8), rgba(3, 5, 8, 0.95)), url('hero-bg.png.png');
             background-size: cover;
             background-position: center;
             z-index: -1;
-            animation: slowMove 25s ease-in-out infinite alternate;
+            animation: slowMove 30s ease-in-out infinite alternate;
         }
 
         @keyframes slowMove {
@@ -49,88 +75,118 @@
 
         /* --- ヘッダー --- */
         header {
-            padding: 20px;
+            padding: 25px 20px;
             text-align: center;
-            background: rgba(10, 17, 24, 0.85);
-            backdrop-filter: blur(10px);
+            background: rgba(3, 5, 8, 0.85);
+            backdrop-filter: blur(15px);
             position: sticky;
             top: 0;
             z-index: 100;
-            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+            border-bottom: 1px solid rgba(232, 195, 124, 0.3);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
         }
 
         header h1 {
-            font-size: 1.8rem;
+            font-size: 2rem;
             color: var(--primary-color);
-            letter-spacing: 0.15em;
+            text-shadow: 0 2px 10px rgba(232, 195, 124, 0.4);
         }
 
         /* --- メインビジュアル --- */
         .hero {
-            padding: 60px 20px;
+            padding: 80px 20px;
             text-align: center;
+            animation: fadeInUp 1s ease-out forwards;
         }
 
         .hero h2 {
-            font-size: 2.2rem;
-            margin-bottom: 15px;
-            text-shadow: 0 4px 10px rgba(0,0,0,0.9);
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, #fff, var(--primary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 4px 15px rgba(0,0,0,0.8);
+            font-weight: 800;
         }
 
         .hero p {
             font-size: 1.1rem;
-            color: #ced4da;
+            color: #b0b8c1;
+            letter-spacing: 0.05em;
         }
 
         .hero-illust {
-            margin-top: 30px;
+            margin-top: 40px;
         }
 
         .hero-illust img {
-            width: 150px;
+            width: 160px;
             height: auto;
             border-radius: 50%;
-            border: 3px solid var(--primary-color);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+            border: 2px solid var(--primary-color);
+            box-shadow: 0 0 30px rgba(232, 195, 124, 0.3);
             animation: floatIllust 4s ease-in-out infinite;
         }
 
         @keyframes floatIllust {
             0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
+            50% { transform: translateY(-12px); }
             100% { transform: translateY(0px); }
         }
 
-        /* --- ギャラリー（ポップアップ） --- */
+        /* --- ギャラリー（スタイリッシュなカード） --- */
         section {
-            padding: 40px 20px;
-            max-width: 900px;
+            padding: 60px 20px;
+            max-width: 1000px;
             margin: 0 auto;
+            animation: fadeInUp 1.2s ease-out forwards;
         }
 
         .section-title {
-            font-size: 1.6rem;
+            font-size: 2rem;
             color: var(--primary-color);
-            margin-bottom: 35px;
+            margin-bottom: 40px;
             text-align: center;
+            position: relative;
+        }
+
+        /* タイトルの下にオシャレな線を追加 */
+        .section-title::after {
+            content: "";
+            display: block;
+            width: 60px;
+            height: 2px;
+            background: var(--primary-color);
+            margin: 15px auto 0;
+            box-shadow: 0 0 10px var(--primary-color);
         }
 
         .gallery {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
+            gap: 30px;
         }
 
         .gallery-item {
             overflow: hidden;
-            border-radius: 16px;
-            border: 1px solid rgba(212, 175, 55, 0.25);
-            background: rgba(10, 17, 24, 0.7);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+            transition: all 0.4s ease;
+        }
+
+        /* 触った時にゴールドに光るエフェクト */
+        .gallery-item:hover {
+            border-color: var(--primary-color);
+            box-shadow: 0 15px 35px rgba(232, 195, 124, 0.2);
+            transform: translateY(-5px);
         }
 
         .image-wrapper {
             width: 100%;
-            height: 220px;
+            height: 240px;
             overflow: hidden;
         }
 
@@ -138,29 +194,38 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s ease;
+            transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
         .gallery-item:hover .image-wrapper img {
-            transform: scale(1.12);
+            transform: scale(1.15);
         }
 
         .gallery-item info {
             display: block;
-            padding: 20px;
+            padding: 25px;
         }
 
         .gallery-item h4 {
             color: var(--primary-color);
-            margin-bottom: 8px;
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            border-bottom: 1px dashed rgba(255,255,255,0.2);
+            padding-bottom: 10px;
         }
 
-        /* --- 店舗情報 --- */
+        .gallery-item p {
+            font-size: 0.95rem;
+            color: #a0aab5;
+        }
+
+        /* --- 店舗情報（アドレス追加版） --- */
         .info-card {
-            background: rgba(10, 17, 24, 0.85);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 16px;
-            padding: 25px;
+            background: var(--glass-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
         }
 
         .info-table {
@@ -169,28 +234,56 @@
         }
 
         .info-table th, .info-table td {
-            padding: 15px 10px;
+            padding: 20px 15px;
             text-align: left;
             border-bottom: 1px solid rgba(255,255,255,0.05);
         }
 
         .info-table th {
             color: var(--primary-color);
+            font-size: 1.1rem;
+            width: 30%;
         }
 
-        .tel-link {
+        @media (max-width: 600px) {
+            .info-table th, .info-table td {
+                display: block;
+                width: 100%;
+                padding: 10px 0;
+            }
+            .info-table th {
+                border-bottom: none;
+                padding-top: 20px;
+            }
+        }
+
+        /* ボタン風のスタイリッシュなリンク */
+        .contact-link {
             color: var(--primary-color);
             text-decoration: none;
-            background: rgba(214, 175, 87, 0.15);
-            padding: 4px 12px;
-            border-radius: 6px;
-            border: 1px solid var(--primary-color);
+            background: rgba(232, 195, 124, 0.1);
+            padding: 8px 16px;
+            border-radius: 4px;
+            border: 1px solid rgba(232, 195, 124, 0.5);
+            display: inline-block;
+            transition: all 0.3s ease;
+            font-family: 'Noto Sans JP', sans-serif;
+            letter-spacing: 0.05em;
+        }
+
+        .contact-link:hover {
+            background: var(--primary-color);
+            color: var(--bg-dark);
+            box-shadow: 0 0 15px rgba(232, 195, 124, 0.5);
         }
 
         footer {
             text-align: center;
-            padding: 40px;
-            color: #6c757d;
+            padding: 50px 20px;
+            color: #5a6573;
+            font-size: 0.9rem;
+            letter-spacing: 0.1em;
+            border-top: 1px solid rgba(255,255,255,0.05);
         }
     </style>
 </head>
@@ -202,19 +295,17 @@
 
     <div class="hero">
         <h2>深淵なる美、ここに極まる。</h2>
-        <p>最高品質の血統を誇る観賞メダカ専門店</p>
+        <p>最高品質 of 最高品質を誇る観賞魚専門店</p>
         
-        <!-- illust.png.png に合わせました -->
         <div class="hero-illust">
             <img src="illust.png.png" alt="メダカイラスト">
         </div>
     </div>
 
     <section id="collection">
-        <h3 class="section-title">至高のメダカ達</h3>
+        <h3 class="section-title">至高のコレクション</h3>
         <div class="gallery">
             
-            <!-- suiren.png.png に合わせました -->
             <div class="gallery-item">
                 <div class="image-wrapper">
                     <img src="suiren.png.png" alt="睡蓮鉢のメダカ">
@@ -225,7 +316,6 @@
                 </info>
             </div>
 
-            <!-- miyuki.png.png に合わせました -->
             <div class="gallery-item">
                 <div class="image-wrapper">
                     <img src="miyuki.png.png" alt="幹之メダカ">
@@ -236,7 +326,6 @@
                 </info>
             </div>
 
-            <!-- aquarium.png.png に合わせました -->
             <div class="gallery-item">
                 <div class="image-wrapper">
                     <img src="aquarium.png.png" alt="美水槽のメダカ群">
@@ -244,6 +333,26 @@
                 <info>
                     <h4>極上血統セレクション</h4>
                     <p>厳選された色鮮やかなメダカたちが創り出す、極上の水中世界。</p>
+                </info>
+            </div>
+
+            <div class="gallery-item">
+                <div class="image-wrapper">
+                    <img src="Gemini_Generated_Image_7uutkp7uutkp7uut_2.png" alt="涼蒼メダカ">
+                </div>
+                <info>
+                    <h4>涼蒼（りょうそう）メダカ</h4>
+                    <p>水草の緑に美しく映える、涼しげで透明感のある神秘的な蒼い鱗。</p>
+                </info>
+            </div>
+
+            <div class="gallery-item">
+                <div class="image-wrapper">
+                    <img src="Gemini_Generated_Image_elgfz3elgfz3elgf.png" alt="ホオジロザメ">
+                </div>
+                <info>
+                    <h4>ホオジロザメダカ</h4>
+                    <p>【特別展示】海の王者が降臨。圧倒的なスケールと迫力を誇る究極の観賞（？）魚。</p>
                 </info>
             </div>
             
@@ -260,7 +369,12 @@
                 </tr>
                 <tr>
                     <th>電話番号</th>
-                    <td><a href="tel:0120000000" class="tel-link">📱 0120-000-000</a></td>
+                    <td><a href="tel:0120000000" class="contact-link">📱 0120-000-000</a></td>
+                </tr>
+                <!-- ご要望のメールアドレスを追加しました -->
+                <tr>
+                    <th>メールアドレス</th>
+                    <td><a href="mailto:info@kiwami-medaka.demo" class="contact-link">✉️ info@kiwami-medaka.demo</a></td>
                 </tr>
                 <tr>
                     <th>住所</th>
