@@ -5,12 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>極みメダカ - 最高峰の観賞メダカ専門店</title>
     <style>
-        /* --- 全体のデザイン（高級感のあるモダン和風） --- */
+        /* --- 全体のデザイン --- */
         :root {
-            --primary-color: #d4af37; /* 高級感のあるゴールド */
-            --bg-dark: #0a1118;       /* 深みのある濃い紺・黒 */
+            --primary-color: #d4af37; 
+            --bg-dark: #0a1118;       
             --text-light: #f5f6f7;
-            --accent-color: #4ea8de;  /* 水をイメージしたアクセントブルー */
         }
 
         * {
@@ -20,14 +19,14 @@
         }
 
         body {
-            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
             background-color: var(--bg-dark);
             color: var(--text-light);
             line-height: 1.8;
             overflow-x: hidden;
         }
 
-        /* --- ギミック1：ゆっくり動く美しい背景（アップロードした水槽画像がじわじわ動く） --- */
+        /* --- 背景（ゆっくり動くアニメーション） --- */
         body::before {
             content: "";
             position: fixed;
@@ -35,13 +34,12 @@
             left: -10%;
             width: 120%;
             height: 120%;
-            /* あなたが用意したメイン背景画像を読み込みます */
-            background-image: linear-gradient(rgba(10, 17, 24, 0.75), rgba(10, 17, 24, 0.85)), url('hero-bg.png');
+            /* 実際のファイル名 hero-bg.png.png に合わせました */
+            background-image: linear-gradient(rgba(10, 17, 24, 0.75), rgba(10, 17, 24, 0.85)), url('hero-bg.png.png');
             background-size: cover;
             background-position: center;
             z-index: -1;
-            /* 20秒かけてゆっくり拡大・縮小を繰り返すアニメーション */
-            animation: slowMove 20s ease-in-out infinite alternate;
+            animation: slowMove 25s ease-in-out infinite alternate;
         }
 
         @keyframes slowMove {
@@ -49,13 +47,12 @@
             100% { transform: scale(1.08) translate(-1%, -1%); }
         }
 
-        /* --- ヘッダー（スマホ対応・半透明のすりガラス風） --- */
+        /* --- ヘッダー --- */
         header {
             padding: 20px;
             text-align: center;
             background: rgba(10, 17, 24, 0.85);
             backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
             position: sticky;
             top: 0;
             z-index: 100;
@@ -66,40 +63,35 @@
             font-size: 1.8rem;
             color: var(--primary-color);
             letter-spacing: 0.15em;
-            font-weight: 700;
         }
 
-        /* --- メインビジュアル（トップ画面） --- */
+        /* --- メインビジュアル --- */
         .hero {
-            padding: 80px 20px;
+            padding: 60px 20px;
             text-align: center;
-            position: relative;
         }
 
         .hero h2 {
             font-size: 2.2rem;
             margin-bottom: 15px;
-            font-weight: 700;
-            letter-spacing: 0.1em;
             text-shadow: 0 4px 10px rgba(0,0,0,0.9);
         }
 
         .hero p {
             font-size: 1.1rem;
             color: #ced4da;
-            text-shadow: 0 2px 5px rgba(0,0,0,0.9);
         }
 
-        /* 可愛いイラストを中央に配置するエリア */
         .hero-illust {
             margin-top: 30px;
-            text-align: center;
         }
 
         .hero-illust img {
-            width: 140px;
+            width: 150px;
             height: auto;
-            /* イラストをふわふわと上下に揺らすアニメーション */
+            border-radius: 50%;
+            border: 3px solid var(--primary-color);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.5);
             animation: floatIllust 4s ease-in-out infinite;
         }
 
@@ -109,9 +101,9 @@
             100% { transform: translateY(0px); }
         }
 
-        /* --- コンテンツの共通レイアウト（スマホ最適化） --- */
+        /* --- ギャラリー（ポップアップ） --- */
         section {
-            padding: 50px 20px;
+            padding: 40px 20px;
             max-width: 900px;
             margin: 0 auto;
         }
@@ -121,20 +113,8 @@
             color: var(--primary-color);
             margin-bottom: 35px;
             text-align: center;
-            position: relative;
-            letter-spacing: 0.05em;
         }
 
-        .section-title::after {
-            content: "";
-            display: block;
-            width: 50px;
-            height: 2px;
-            background: var(--primary-color);
-            margin: 12px auto 0;
-        }
-
-        /* --- ギミック2：触ると大きくなる（ポップアップする）画像ギャラリー --- */
         .gallery {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -146,32 +126,21 @@
             border-radius: 16px;
             border: 1px solid rgba(212, 175, 55, 0.25);
             background: rgba(10, 17, 24, 0.7);
-            backdrop-filter: blur(5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-            transition: border-color 0.3s ease;
         }
 
-        .gallery-item:hover {
-            border-color: var(--primary-color);
-        }
-
-        /* 画像を包むボックス（はみ出し防止用） */
         .image-wrapper {
             width: 100%;
             height: 220px;
             overflow: hidden;
-            position: relative;
         }
 
-        /* 実際の画像：ゆっくり大きくなる効果 */
         .image-wrapper img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1); /* なめらかな拡大 */
+            transition: transform 0.5s ease;
         }
 
-        /* スマホでのタップ、またはPCのマウスホバーで画像がポップアップ（拡大） */
         .gallery-item:hover .image-wrapper img {
             transform: scale(1.12);
         }
@@ -179,27 +148,19 @@
         .gallery-item info {
             display: block;
             padding: 20px;
-            border-top: 1px solid rgba(255,255,255,0.05);
         }
 
         .gallery-item h4 {
-            font-size: 1.2rem;
             color: var(--primary-color);
             margin-bottom: 8px;
         }
 
-        .gallery-item p {
-            font-size: 0.95rem;
-            color: #b0b5bc;
-        }
-
-        /* --- 店舗情報（ダミーの住所・電話番号） --- */
+        /* --- 店舗情報 --- */
         .info-card {
             background: rgba(10, 17, 24, 0.85);
             border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 16px;
             padding: 25px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
         }
 
         .info-table {
@@ -211,29 +172,12 @@
             padding: 15px 10px;
             text-align: left;
             border-bottom: 1px solid rgba(255,255,255,0.05);
-            font-size: 0.95rem;
-        }
-
-        /* スマホで見るときは縦並びにする設定 */
-        @media (max-width: 600px) {
-            .info-table th, .info-table td {
-                display: block;
-                width: 100%;
-                padding: 8px 0;
-            }
-            .info-table th {
-                border-bottom: none;
-                padding-top: 15px;
-            }
         }
 
         .info-table th {
-            width: 25%;
             color: var(--primary-color);
-            font-weight: 600;
         }
 
-        /* スマホ用の電話ボタン（タップで電話がかけられるプロ仕様） */
         .tel-link {
             color: var(--primary-color);
             text-decoration: none;
@@ -241,25 +185,12 @@
             padding: 4px 12px;
             border-radius: 6px;
             border: 1px solid var(--primary-color);
-            display: inline-block;
-            margin-top: 5px;
-            font-weight: bold;
-            transition: all 0.3s ease;
         }
 
-        .tel-link:hover {
-            background: var(--primary-color);
-            color: var(--bg-dark);
-        }
-
-        /* --- フッター --- */
         footer {
             text-align: center;
             padding: 40px;
-            font-size: 0.85rem;
             color: #6c757d;
-            border-top: 1px solid rgba(255,255,255,0.05);
-            background: rgba(10, 17, 24, 0.9);
         }
     </style>
 </head>
@@ -273,8 +204,9 @@
         <h2>深淵なる美、ここに極まる。</h2>
         <p>最高品質の血統を誇る観賞メダカ専門店</p>
         
+        <!-- illust.png.png に合わせました -->
         <div class="hero-illust">
-            <img src="illust.png" alt="メダカイラスト">
+            <img src="illust.png.png" alt="メダカイラスト">
         </div>
     </div>
 
@@ -282,9 +214,10 @@
         <h3 class="section-title">至高のメダカ達</h3>
         <div class="gallery">
             
+            <!-- suiren.png.png に合わせました -->
             <div class="gallery-item">
                 <div class="image-wrapper">
-                    <img src="suiren.png" alt="睡蓮鉢のメダカ">
+                    <img src="suiren.png.png" alt="睡蓮鉢のメダカ">
                 </div>
                 <info>
                     <h4>日本の四季とメダカ</h4>
@@ -292,9 +225,10 @@
                 </info>
             </div>
 
+            <!-- miyuki.png.png に合わせました -->
             <div class="gallery-item">
                 <div class="image-wrapper">
-                    <img src="miyuki.png" alt="幹之メダカ">
+                    <img src="miyuki.png.png" alt="幹之メダカ">
                 </div>
                 <info>
                     <h4>極光幹之（オーロラみゆき）</h4>
@@ -302,9 +236,10 @@
                 </info>
             </div>
 
+            <!-- aquarium.png.png に合わせました -->
             <div class="gallery-item">
                 <div class="image-wrapper">
-                    <img src="aquarium.png" alt="美水槽のメダカ群">
+                    <img src="aquarium.png.png" alt="美水槽のメダカ群">
                 </div>
                 <info>
                     <h4>極上血統セレクション</h4>
@@ -325,10 +260,7 @@
                 </tr>
                 <tr>
                     <th>電話番号</th>
-                    <td>
-                        <a href="tel:0120000000" class="tel-link">📱 0120-000-000</a>
-                        <span style="font-size:0.8rem; color:#888; display:block; margin-top:5px;">（デモ用ダミー・スマホでタップすると発信できます）</span>
-                    </td>
+                    <td><a href="tel:0120000000" class="tel-link">📱 0120-000-000</a></td>
                 </tr>
                 <tr>
                     <th>住所</th>
